@@ -1,0 +1,20 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/alexmal/Documents/MSU/Kanovodov_cpp/CPP_msu/Task_1/main.cpp
+tree.h
+/home/alexmal/Documents/MSU/Kanovodov_cpp/CPP_msu/Task_1/tree.h
+cassert
+-
+iostream
+-
+
+/home/alexmal/Documents/MSU/Kanovodov_cpp/CPP_msu/Task_1/tree.h
+memory
+-
+

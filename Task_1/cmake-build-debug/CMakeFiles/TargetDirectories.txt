@@ -1,0 +1,3 @@
+/home/alexmal/Documents/MSU/Kanovodov_cpp/CPP_msu/Task_1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/alexmal/Documents/MSU/Kanovodov_cpp/CPP_msu/Task_1/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/alexmal/Documents/MSU/Kanovodov_cpp/CPP_msu/Task_1/cmake-build-debug/CMakeFiles/Task_1.dir
