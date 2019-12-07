@@ -12,6 +12,6 @@ std::vector<std::string> TFactory::GetAvailableObjects() const {
     return Impl->GetAvailableObjects();
 }
 
-std::unique_ptr<TFunction> TFactory::CreateObject(const std::string &name) const {
+std::shared_ptr<TFunction> TFactory::CreateObject(const std::string &name) const {
     return Impl->CreteObject(name);
 }

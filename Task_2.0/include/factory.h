@@ -23,10 +23,10 @@ public:
 
     std::vector<std::string> GetAvailableObjects() const;
 
-    std::unique_ptr<TFunction> CreateObject(const std::string &name) const;
+    std::shared_ptr<TFunction> CreateObject(const std::string &name) const;
 
     template<class... Args>
-    std::unique_ptr<TFunction> CreateObject(const std::string &name, Args &&... args) const {
+    std::shared_ptr<TFunction> CreateObject(const std::string &name, Args &&... args) const {
         return Impl->CreteObject(name, args...);
     }
 

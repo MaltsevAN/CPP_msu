@@ -32,18 +32,18 @@ public:
 
     template<class TCurrentObject>
     class TCreator : public ICreator {
-        std::unique_ptr<TFunction> Create(const TOptions &opts) const override {
+        std::shared_ptr<TFunction> Create(const TOptions &opts) const override {
             if (!opts.options.empty()) {
-                return std::make_unique<TCurrentObject>(opts);
+                return std::make_shared<TCurrentObject>(opts);
             } else {
-                return std::make_unique<TCurrentObject>();
+                return std::make_shared<TCurrentObject>();
             }
 
         }
 
 //
-        std::unique_ptr<TFunction> Create() const override {
-            return std::make_unique<TCurrentObject>();
+        std::shared_ptr<TFunction> Create() const override {
+            return std::make_shared<TCurrentObject>();
         }
     };
 
@@ -54,7 +54,7 @@ public:
     }
 
     template<class... Args>
-    std::unique_ptr<TFunction> CreteObject(const std::string &name, Args &&... args) const {
+    std::shared_ptr<TFunction> CreteObject(const std::string &name, Args &&... args) const {
         auto creator = RegisteredCreators.find(name);
         if (creator == RegisteredCreators.end()) {
             return nullptr;

@@ -14,9 +14,9 @@ class ICreator {
 public:
     virtual ~ICreator() = default;
 
-    virtual std::unique_ptr<TFunction> Create(const TOptions &opts) const = 0;
+    virtual std::shared_ptr<TFunction> Create(const TOptions &opts) const = 0;
 
-    virtual std::unique_ptr<TFunction> Create() const = 0;
+    virtual std::shared_ptr<TFunction> Create() const = 0;
 };
 
 

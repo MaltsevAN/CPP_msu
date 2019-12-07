@@ -1,6 +1,7 @@
 //
 // Created by alexmal on 07.12.19.
 //
+#pragma once
 
 #ifndef TASK_2_0_OBJECTS_H
 #define TASK_2_0_OBJECTS_H
@@ -160,12 +161,11 @@ public:
 };
 
 class TComplexFunc : public TFunction {
-    using TFunctionUPtr = std::unique_ptr<TFunction>;
-    TFunctionUPtr _f;
-    TFunctionUPtr _g;
+    std::shared_ptr<TFunction> _f;
+    std::shared_ptr<TFunction> _g;
     std::string _op;
 public:
-    TComplexFunc(TFunctionUPtr f, TFunctionUPtr g, std::string &op) {
+    TComplexFunc(std::shared_ptr<TFunction> f, std::shared_ptr<TFunction> g, const std::string &op) {
         _f = std::move(f);
         _g = std::move(g);
         _op = op;
@@ -220,6 +220,19 @@ public:
         return "(" + _f->ToString() + ")" + operation + "(" + _g->ToString() + ")";
     }
 };
+
+std::shared_ptr<TFunction> operator+(const std::shared_ptr<TFunction> f, const std::shared_ptr<TFunction> g) {
+    return std::make_unique<TComplexFunc>(f, g, "plus");
+}
+//std::shared_ptr<TFunction> operator- (const std::shared_ptr<TFunction>& f,const std::shared_ptr<TFunction>& g) {
+//    return std::make_unique<TComplexFunc>(f,g,"minus");
+//}
+//std::shared_ptr<TFunction> operator* (const std::shared_ptr<TFunction>& f,const std::shared_ptr<TFunction>& g) {
+//    return std::make_unique<TComplexFunc>(f,g,"multiply");
+//}
+//std::shared_ptr<TFunction> operator/ (const std::shared_ptr<TFunction>& f,const std::shared_ptr<TFunction>& g) {
+//    return std::make_unique<TComplexFunc>(f,g,"division");
+//}
 
 
 #endif //TASK_2_OBJECTS_H
