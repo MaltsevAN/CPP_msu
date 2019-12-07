@@ -29,14 +29,19 @@ public:
 
     std::vector<std::string> GetAvailableObjects() const;
 
-    std::unique_ptr<TFunction> CreteObject(const std::string &name) const;
 
     template<class TCurrentObject>
     class TCreator : public ICreator {
         std::unique_ptr<TFunction> Create(const TOptions &opts) const override {
-            return std::make_unique<TCurrentObject>();
+            if (!opts.options.empty()) {
+                return std::make_unique<TCurrentObject>(opts);
+            } else {
+                return std::make_unique<TCurrentObject>();
+            }
+
         }
 
+//
         std::unique_ptr<TFunction> Create() const override {
             return std::make_unique<TCurrentObject>();
         }
@@ -56,7 +61,7 @@ public:
         }
 
         TOptions opts{args...};
-        std::cout << "CREate" << std::endl;
+
         return creator->second->Create(opts);
     }
 

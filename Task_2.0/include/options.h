@@ -11,10 +11,14 @@
 #include <stdexcept>
 
 struct TOptions {
-    template<class TArg>
-    TOptions(std::initializer_list<TArg> il) {
-        options.insert(options.begin(), il.begin(), il.end());
+    TOptions(std::initializer_list<std::any> il) {
+        if (il.size() == 0) {
+            options = {};
+        } else {
+            options.insert(options.begin(), il.begin(), il.end());
+        }
     }
+
 
     template<class T, unsigned I>
     T get() const {
@@ -28,6 +32,14 @@ struct TOptions {
         }
     };
 
+    std::any get(size_t i) const {
+        return options[i];
+
+    }
+
+    bool is_empty() {
+        return options.empty();
+    }
     std::vector<std::any> options;
 };
 
