@@ -1,5 +1,7 @@
 #include <iostream>
 #include "include/factory.h"
+#include "include/gradient_descent.h"
+
 #include <vector>
 
 int main() {
@@ -42,7 +44,15 @@ int main() {
     auto m = g / f;
     std::cout << m->ToString() << std::endl;
 
-
+//    gradient x^2+x-2=0
+    std::vector<double> v_2 = {-2, 1, 1};
+    for (int n : v_2) {
+        std::cout << n;
+    }
+    std::cout << std::endl;
+    f = factory.CreateObject("polynomial", v_2);
+    auto res = gradient_descent(f, 20, 0.1, 0.00001, 0, true);
+    std::cout << res << std::endl;
 //    std::cout << "Hello, World!" << std::endl;
     return 0;
 }

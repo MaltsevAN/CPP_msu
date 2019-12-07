@@ -12,6 +12,7 @@
 #include "objects.h"
 #include "options.h"
 #include "TImpl.h"
+#include "exceptions.h"
 
 class TFactory {
     std::unique_ptr<const TImpl> Impl;

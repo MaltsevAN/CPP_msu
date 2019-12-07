@@ -10,6 +10,7 @@
 #include <any>
 #include <stdexcept>
 
+
 struct TOptions {
     TOptions(std::initializer_list<std::any> il) {
         if (il.size() == 0) {
