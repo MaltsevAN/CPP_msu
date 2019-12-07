@@ -18,7 +18,7 @@ gradient_descent(const std::shared_ptr<TFunction> f, size_t iterations, double a
             break;
         }
         if (out) {
-            std::cout << cur_value;
+            std::cout << cur_value << " ";
         }
         x = x - alpha * f_2->GetDeriv(x);
     }

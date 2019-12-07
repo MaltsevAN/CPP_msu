@@ -196,7 +196,7 @@ public:
         } else if (_op == "division") {
             double g_x = (*_g)(x);
             if (g_x != 0) {
-                return ((*_f).GetDeriv(x) * g_x - (*_g).GetDeriv(x) * (*_f)(x)) / (std::pow(x, 2));
+                return ((*_f).GetDeriv(x) * g_x - (*_g).GetDeriv(x) * (*_f)(x)) / (std::pow(g_x, 2));
             } else {
                 throw std::logic_error("TComplexFunc: Divide by zero");
             }
