@@ -37,6 +37,11 @@ int main() {
 //
     f = factory.CreateObject("ident", 2);
     std::cout << f->ToString() << std::endl;
+    auto g = factory.CreateObject("polynomial", v);
+    std::cout << g->ToString() << std::endl;
+    auto m = g / f;
+    std::cout << m->ToString() << std::endl;
+
 
 //    std::cout << "Hello, World!" << std::endl;
     return 0;

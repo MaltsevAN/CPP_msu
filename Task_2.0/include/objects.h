@@ -195,7 +195,11 @@ public:
             return (*_f).GetDeriv(x) * (*_g)(x) + (*_f)(x) * (*_g).GetDeriv(x);
         } else if (_op == "division") {
             double g_x = (*_g)(x);
-            return ((*_f).GetDeriv(x) * g_x - (*_g).GetDeriv(x) * (*_f)(x)) / (std::pow(x, 2));
+            if (g_x != 0) {
+                return ((*_f).GetDeriv(x) * g_x - (*_g).GetDeriv(x) * (*_f)(x)) / (std::pow(x, 2));
+            } else {
+                throw std::logic_error("TComplexFunc: Divide by zero");
+            }
         } else {
             throw std::logic_error("TComplexFunc: Unknown operation");
 
@@ -221,18 +225,21 @@ public:
     }
 };
 
-std::shared_ptr<TFunction> operator+(const std::shared_ptr<TFunction> f, const std::shared_ptr<TFunction> g) {
+inline std::shared_ptr<TFunction> operator+(const std::shared_ptr<TFunction> f, const std::shared_ptr<TFunction> g) {
     return std::make_unique<TComplexFunc>(f, g, "plus");
 }
-//std::shared_ptr<TFunction> operator- (const std::shared_ptr<TFunction>& f,const std::shared_ptr<TFunction>& g) {
-//    return std::make_unique<TComplexFunc>(f,g,"minus");
-//}
-//std::shared_ptr<TFunction> operator* (const std::shared_ptr<TFunction>& f,const std::shared_ptr<TFunction>& g) {
-//    return std::make_unique<TComplexFunc>(f,g,"multiply");
-//}
-//std::shared_ptr<TFunction> operator/ (const std::shared_ptr<TFunction>& f,const std::shared_ptr<TFunction>& g) {
-//    return std::make_unique<TComplexFunc>(f,g,"division");
-//}
+
+inline std::shared_ptr<TFunction> operator-(const std::shared_ptr<TFunction> &f, const std::shared_ptr<TFunction> &g) {
+    return std::make_unique<TComplexFunc>(f, g, "minus");
+}
+
+inline std::shared_ptr<TFunction> operator*(const std::shared_ptr<TFunction> &f, const std::shared_ptr<TFunction> &g) {
+    return std::make_unique<TComplexFunc>(f, g, "multiply");
+}
+
+inline std::shared_ptr<TFunction> operator/(const std::shared_ptr<TFunction> &f, const std::shared_ptr<TFunction> &g) {
+    return std::make_unique<TComplexFunc>(f, g, "division");
+}
 
 
 #endif //TASK_2_OBJECTS_H
