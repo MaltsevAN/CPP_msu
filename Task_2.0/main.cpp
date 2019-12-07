@@ -3,6 +3,8 @@
 #include "include/gradient_descent.h"
 
 #include <vector>
+#include "gtest/gtest.h"
+
 
 int main() {
 
@@ -55,4 +57,5 @@ int main() {
     std::cout << res << std::endl;
 //    std::cout << "Hello, World!" << std::endl;
     return 0;
+
 }
